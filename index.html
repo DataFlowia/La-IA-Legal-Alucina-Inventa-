@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cuando la IA inventa: alucinaciones en el trabajo legal</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#1f2430;--mut:#667085;--line:#e6e0d6;--acc:#b4532a;--ok:#2f7d5b;--bad:#c0392b;--warn:#c98a1b;--blue:#2f5d9b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171c;--card:#1e222a;--ink:#eceae4;--mut:#9aa1ad;--line:#323843;--acc:#e08a5c;--ok:#4cb888;--bad:#e5695b;--warn:#e0a844;--blue:#6e9de0}}
+:root[data-theme="dark"]{--bg:#15171c;--card:#1e222a;--ink:#eceae4;--mut:#9aa1ad;--line:#323843;--acc:#e08a5c;--ok:#4cb888;--bad:#e5695b;--warn:#e0a844;--blue:#6e9de0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.2;margin:.3em 0}
+h2{font-size:1.5rem;margin:2.2em 0 .3em;border-top:1px solid var(--line);padding-top:1.2em}
+h3{margin:.2em 0}
+p{margin:.5em 0}
+.sans,button,select,table,.tag,.src{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.lead{font-size:1.15rem;color:var(--mut)}
+.src{font-size:.82rem;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:14px 0}
+a{color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.big{font:700 2rem/1.1 system-ui,sans-serif;color:var(--acc)}
+.small{font-size:.85rem;color:var(--mut)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+button{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:999px;font-size:.88rem}
+button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.tag{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:999px;color:#fff;font-weight:600}
+.mat{background:var(--bad)}.min{background:var(--warn)}.no{background:var(--ok)}
+.quote{border-left:3px solid var(--acc);padding:4px 12px;margin:8px 0;background:rgba(180,83,42,.07);font-style:italic}
+.bars{margin:10px 0}
+.row{display:grid;grid-template-columns:minmax(110px,170px) 1fr;gap:8px;align-items:center;margin:6px 0;font:.85rem system-ui,sans-serif}
+.track{background:var(--line);border-radius:6px;height:22px;position:relative;overflow:hidden}
+.fill{height:100%;border-radius:6px;background:var(--acc);transition:width .5s;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-weight:600;font-size:.75rem;min-width:fit-content}
+.fill.ghost{position:absolute;left:0;top:0;background:var(--blue);opacity:.35}
+.fill.top{position:relative;z-index:1}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.n{width:28px;height:28px;border-radius:50%;background:var(--acc);color:#fff;display:inline-flex;align-items:center;justify-content:center;font:700 .9rem system-ui}
+.sim{display:grid;gap:10px}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.82rem;min-width:560px}
+th,td{padding:6px 8px;text-align:center;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font:.8rem system-ui;color:var(--mut)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+ul{padding-left:1.2em}
+li{margin:.3em 0}
+.callout{border:1px solid var(--acc);border-radius:12px;padding:12px 14px;background:rgba(180,83,42,.07)}
+footer{margin-top:40px;font:.8rem system-ui;color:var(--mut)}
+</style>
+</head>
+<body>
+<main>
+<p class="tag mat sans" style="background:var(--acc)">Alfabetización en IA legal</p>
+<h1>Cuando la IA inventa: lo que toda persona debería saber sobre las alucinaciones en el trabajo legal</h1>
+<p class="lead">Un resumen pedagógico, con gráficos interactivos, de lo que midió el nuevo benchmark <b>Harvey LAB-AA v1.1</b>. No hace falta ser abogada o abogado para entenderlo.</p>
+<div class="src"><b>Fuente:</b> Artificial Analysis, <a href="https://artificialanalysis.ai/articles/harvey-lab-aa-v1-1" target="_blank" rel="noopener">“Announcing Harvey LAB-AA v1.1: adding hallucination checks to raise the bar for agentic legal work”</a>, 8 de octubre de 2026. Todas las cifras de este tablero provienen de ese artículo (datos al 8-oct-2026). Las analogías y recomendaciones prácticas son nuestras y están señaladas como tales.</div>
+
+<div class="grid">
+<div class="card"><div class="big">120</div><div class="small">tareas legales privadas creadas por el equipo de Harvey: M&amp;A, mercado de capitales, tributario, litigios, quiebras</div></div>
+<div class="card"><div class="big">&gt;60%</div><div class="small">de los resultados que “aprobaban” contenían al menos una alucinación material</div></div>
+<div class="card"><div class="big">0,03 vs 13,96</div><div class="small">alucinaciones materiales por tarea: el modelo que menos inventa vs. el que más</div></div>
+<div class="card"><div class="big">26,7% → 8,9%</div><div class="small">lo que le pasó a Muse Spark 1.3 al descontar los errores inventados</div></div>
+</div>
+
+<h2>1. ¿Qué es una alucinación?</h2>
+<p>Imagina que le pides a un practicante muy veloz y muy seguro de sí mismo que resuma un contrato. Entrega diez páginas impecables… pero en una de ellas dice que el plazo vence el 15 de marzo, cuando el contrato dice el 15 de abril. No mintió con mala intención: <i>rellenó</i> con algo que sonaba plausible. <span class="small">(Analogía nuestra.)</span> Eso es una alucinación: una afirmación del trabajo entregado que los documentos fuente <b>no respaldan</b>.</p>
+<p>El estudio las clasifica en tres tipos y en dos niveles de gravedad:</p>
+<div class="grid">
+<div class="card"><h3>Contradicción</h3><p class="small">El texto dice lo opuesto a lo que dicen los documentos.</p></div>
+<div class="card"><h3>Contenido fabricado</h3><p class="small">Cita o describe algo que no existe en las fuentes.</p></div>
+<div class="card"><h3>Afirmación sin sustento</h3><p class="small">Un dato específico del caso sin respaldo en el expediente.</p></div>
+</div>
+<p><span class="tag mat">Material</span> engañaría a quien lee en un punto sustantivo (una parte, un monto, una fecha, una obligación equivocada). <span class="tag min">Menor</span> es un error real, pero improbable que cambie la interpretación jurídica. Solo las <b>materiales</b> afectan el puntaje.</p>
+
+<h3 style="margin-top:1.2em">Tres casos reales del artículo (misma tarea tributaria)</h3>
+<div class="tabs" id="ex-tabs"></div>
+<div class="card" id="ex-body"></div>
+<p class="small">Nota importante: el control es <b>conservador</b>. No penaliza que el modelo use conocimiento jurídico general (leyes, jurisprudencia) fuera de los archivos; solo revisa afirmaciones específicas del caso.</p>
+
+<h2>2. ¿Cómo se detectan?</h2>
+<p>Un “juez” de IA (GPT-6 Sol) revisa cada entregable contra los documentos originales en tres pasos:</p>
+<div class="steps">
+<div class="card"><span class="n">1</span><h3>Encontrar sospechas</h3><p class="small">Marca frases que podrían ser inventadas.</p></div>
+<div class="card"><span class="n">2</span><h3>Confirmar o descartar</h3><p class="small">Vuelve a las fuentes. Si el dato sí estaba respaldado, el aviso se descarta, y clasifica el resto como material o menor.</p></div>
+<div class="card"><span class="n">3</span><h3>Aplicar la “compuerta”</h3><p class="small">Una sola alucinación material pone la tarea en 0%.</p></div>
+</div>
+
+<h2>3. Simulador: ¿por qué una alucinación “tira” todo el trabajo?</h2>
+<p>El benchmark mide dos cosas distintas: <b>completitud</b> (¿cumplió los criterios del encargo?) y <b>fidelidad</b> (¿se ciñó a los hechos?). Pruébalo con el ejemplo ilustrativo del artículo, donde un panel de 3 jueces evalúa un trabajo:</p>
+<div class="card sim sans">
+<label>Jueces que dieron por cumplidos <b>todos</b> los criterios: <b id="jv">2</b> de 3
+<input type="range" id="judges" min="0" max="3" value="2"></label>
+<label><input type="checkbox" id="hall"> El trabajo contiene una alucinación material</label>
+<div class="res">
+<div class="card"><div class="small">Tasa “todo aprobado”</div><div class="big" id="r1">67%</div></div>
+<div class="card"><div class="small">Con compuerta de alucinaciones</div><div class="big" id="r2" style="color:var(--ok)">67%</div></div>
+<div class="card"><div class="small">Criterios aprobados (27 de 30 veredictos)</div><div class="big">90%</div></div>
+</div></div>
+<p class="small">Moraleja: el trabajo puede cumplir el 90% de lo pedido y aun así valer 0 si inventó un dato crítico. Es lo mismo que en un escrito judicial: ninguna cantidad de buena redacción compensa una cita falsa.</p>
+
+<h2>4. Resultados: la compuerta cambia el podio</h2>
+<h3>Tasa de aprobación total con compuerta de alucinaciones</h3>
+<p class="small">Share de tareas donde el entregable cumple todos los criterios y no tiene alucinaciones materiales.</p>
+<div class="bars" id="gated"></div>
+
+<h3>Antes y después de la compuerta</h3>
+<div class="legend"><span><i class="dot" style="background:var(--blue);opacity:.5"></i>Sin compuerta</span><span><i class="dot" style="background:var(--acc)"></i>Con compuerta</span></div>
+<div class="bars" id="ba"></div>
+<p>Muse Spark 1.3 lideraba con claridad (26,7%), pero dos tercios de esas aprobaciones tenían una alucinación material. En cambio GPT-6 Astra casi no pierde nada (8,9% → 8,6%) y sube del puesto 10 al 3.</p>
+
+<h3>Alucinaciones materiales por tarea (menos es mejor)</h3>
+<div class="bars" id="hpt"></div>
+<p>Completar criterios y no inventar son habilidades distintas: Muse Spark 1.3 cumple el mayor porcentaje de criterios (96,0%) pero promedia 1,68 alucinaciones materiales por tarea; GPT-6 Astra, 0,03. Todos los modelos de pesos abiertos promedian al menos 2,09. El artículo concluye que la tasa depende mucho más del <b>modelo</b> que del área del derecho.</p>
+
+<h3>¿Y si toleramos fallos pequeños? (tasa de “casi aprobado”)</h3>
+<div class="tabs" id="np-tabs"></div>
+<div class="bars" id="np"></div>
+<p class="small">Con compuerta aplicada: una alucinación material sigue poniendo la tarea en 0% en cualquier banda. Modelos cuyas aprobaciones se borran por alucinaciones ganan poco (GLM-5.3 llega a 2,2% con dos fallos; Gemini 3.8 Flash se queda en 0%).</p>
+
+<h2>5. ¿Quién vigila al vigilante? Comparando jueces</h2>
+<p>El equipo probó seis modelos como “detector de alucinaciones” sobre las mismas 20 tareas y 8 modelos. Cada celda es el promedio de alucinaciones materiales por tarea que ese juez confirmó. Más oscuro = más alucinaciones detectadas.</p>
+<div class="wrap"><table id="heat"></table></div>
+<p>GPT-6 Sol detectó más (470 en total) que Grok (219), Opus 5.5 (99) y Sonnet 5.5 (57), pese a un criterio conservador; por eso fue el elegido para el ranking oficial. Lección: <b>qué tan estricto es el revisor cambia los números</b>, aunque algunos modelos (GPT-6 Astra) salen limpios con todos.</p>
+
+<h2>6. Más caro, más largo… ¿mejor?</h2>
+<div class="grid">
+<div class="card"><h3>Grok 4.7</h3><p class="small">Líder (9,4%). ~US$9,50 por tarea, ~33 min, ~63 turnos, ~180k tokens de salida.</p></div>
+<div class="card"><h3>Claude Fable 5.1</h3><p class="small">6,4%. El más caro: ~US$21,70 por tarea; ~33 min. Los modelos Claude generaron más texto (~202k a ~562k tokens).</p></div>
+<div class="card"><h3>Muse Spark 1.3</h3><p class="small">8,9%. ~US$4,20 por tarea y ~12 min: buena relación costo-desempeño.</p></div>
+<div class="card"><h3>GPT-6 Astra</h3><p class="small">8,6% con solo ~81k tokens y ~54 turnos.</p></div>
+</div>
+<p>Escribir más o iterar más no garantiza acertar: Claude Sonnet 5.5 corre el ciclo más largo (~179 turnos) y puntúa 2,8%.</p>
+
+<h2>7. ¿Qué nos llevamos? <span class="small">(lectura nuestra, no del artículo)</span></h2>
+<div class="callout">
+<ul>
+<li><b>Para quien ejerce:</b> trate todo borrador de IA como el de un practicante brillante pero sin criterio: verifique cada fecha, monto, parte y cita contra el documento original.</li>
+<li><b>Para equipos y áreas de cumplimiento:</b> al evaluar herramientas, pida cifras de fidelidad a las fuentes, no solo “qué tan completo” es el resultado.</li>
+<li><b>Para público no legal:</b> un texto bien escrito no es un texto verdadero. La forma convence; el respaldo es lo que importa.</li>
+<li><b>Para quien decide:</b> los resultados cambian según el modelo; no asuma que “IA legal” es una sola cosa.</li>
+</ul></div>
+
+<h2>Límites a tener presentes</h2>
+<ul class="small sans">
+<li>Las tareas son privadas (120) y las diseñó Harvey; Artificial Analysis hizo una reimplementación independiente (“LAB-AA”) con su propio arnés y sin las herramientas personalizadas de Harvey.</li>
+<li>Los resultados v1.1 <b>no son comparables</b> con los de v1.0.</li>
+<li>Los puntajes son bajos en términos absolutos (el mejor ronda 9%) porque la vara es exigente: todos los criterios y cero alucinaciones materiales.</li>
+<li>Los autores planean incorporar en el futuro factores como estilo y tono.</li>
+<li>Los modelos y jueces son los mencionados en el artículo; los resultados se actualizan en la <a href="https://artificialanalysis.ai/evaluations/harvey-lab-aa" target="_blank" rel="noopener">página de evaluación</a>.</li>
+</ul>
+<footer>Resumen educativo elaborado a partir de Artificial Analysis (8-oct-2026). Para el detalle completo y la metodología, consulte el artículo original. No constituye asesoría legal.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const bar=(label,val,max,txt,extra='')=>`<div class="row"><span>${label}</span><div class="track">${extra}<div class="fill top" style="width:${Math.max(val/max*100,2)}%">${txt}</div></div></div>`;
+// Examples
+const EX=[
+{t:'Deuda duplicada',sev:'Material',cls:'mat',sub:'“debt schedule $220M term loan + $214M notes”',src:'Un abono de $6M redujo el mismo préstamo de $220M a $214M durante 2023.',why:'$220M y $214M son el saldo inicial y final de <b>un solo préstamo</b>; el borrador los trató como dos deudas. Confirmado como material.'},
+{t:'Error aritmético',sev:'Menor',cls:'min',sub:'“$6.400.000 × 293/365 = $5.136.986”',src:'$6,4M × (293/365) ≈ $5.138.000.',why:'La cuenta da ≈ $5.137.534, no $5.136.986. Error real, pero sin impacto en la interpretación: menor.'},
+{t:'Falsa alarma',sev:'No confirmada',cls:'no',sub:'“El sobrepago de $960.000 se acreditó a 2024”',src:'El borrador de declaración muestra $960.000 aplicados a pagos estimados 2024.',why:'Aunque la fuente pide confirmar antes de presentar, sí respalda el dato. El juez descartó el aviso. <b>Revisar también evita acusar en falso.</b>'}];
+let ei=0;
+function ex(){ $('ex-tabs').innerHTML=EX.map((e,i)=>`<button class="${i==ei?'on':''}" onclick="ei=${i};ex()">${e.t}</button>`).join('');
+const e=EX[ei];$('ex-body').innerHTML=`<span class="tag ${e.cls}">${e.sev}</span><p><b>Lo que escribió la IA:</b></p><div class="quote">${e.sub}</div><p><b>Lo que decía la fuente:</b> ${e.src}</p><p>${e.why}</p>`;}
+ex();
+// Simulator
+function sim(){const n=+$('judges').value,h=$('hall').checked;$('jv').textContent=n;$('r1').textContent=Math.round(n/3*100)+'%';const g=h?0:Math.round(n/3*100);$('r2').textContent=g+'%';$('r2').style.color=h?'var(--bad)':'var(--ok)';}
+$('judges').oninput=sim;$('hall').onchange=sim;
+// Gated
+const G=[['Grok 4.7 (xhigh)',9.4],['Muse Spark 1.3 (max)',8.9],['GPT-6 Astra (max)',8.6],['GPT-6.1 Sol (max)',6.9],['Claude Fable 5.1',6.4],['Kimi K3 (max)',5.3],['Claude Opus 5.5',4.2]];
+$('gated').innerHTML=G.map(([l,v])=>bar(l,v,10,v.toFixed(1)+'%')).join('');
+const BA=[['Muse Spark 1.3',26.7,8.9],['GPT-6 Astra',8.9,8.6],['GPT-6.1 Sol',7.5,6.9]];
+$('ba').innerHTML=BA.map(([l,a,b])=>`<div class="row"><span>${l}</span><div class="track"><div class="fill ghost" style="width:${a/27*100}%"></div><div class="fill top" style="width:${b/27*100}%">${b}%</div></div></div><div class="row small"><span></span><span>antes: ${a}% → después: ${b}%</span></div>`).join('');
+const H=[['GPT-6 Astra',0.03],['GPT-6 Sol',0.07],['Muse Spark 1.3',1.68],['Gemini 3.8 Flash',13.96]];
+$('hpt').innerHTML=H.map(([l,v])=>bar(l,v,14,String(v).replace('.',','))).join('');
+// Near pass
+const NP=[['GPT-6 Astra',8.6,20.3,31.7],['GPT-6.1 Sol',6.9,20.3,29.6],['Grok 4.7',9.4,15.3,23.1]];
+let nb=1;
+function np(){const L=['Sin fallos','Hasta 1 criterio fallado','Hasta 2 criterios fallados'];
+$('np-tabs').innerHTML=L.map((l,i)=>`<button class="${i==nb?'on':''}" onclick="nb=${i};np()">${l}</button>`).join('');
+$('np').innerHTML=NP.map(r=>bar(r[0],r[1+nb],32,r[1+nb].toFixed(1)+'%')).join('');}
+np();
+// Heatmap
+const J=['GPT-6 Sol','GPT-6 Luna','Grok 4.7','Opus 5.5','Sonnet 5.5','Gemini 3.8 Flash'];
+const M=[['GPT-6 Astra',[0,0,0,0,0,0]],['GPT-6 Sol',[.15,.10,.20,0,0,0]],['Grok 4.7',[.70,1.25,.55,.10,.10,0]],['Claude Opus 5.5',[.80,1.60,.25,0,0,0]],['Claude Fable 5.1',[1.55,1.85,.65,.15,0,0]],['Muse Spark 1.3',[1.60,1.35,.50,.15,0,0]],['Kimi K3',[1.95,1.65,.55,.25,.10,0]],['Gemini 3.8 Flash',[16.75,11.55,8.25,4.30,2.65,1.40]]];
+const TOT=[23.50,19.35,10.95,4.95,2.85,1.40];
+const col=v=>`rgba(192,57,43,${(Math.sqrt(v/16.75)*.85).toFixed(2)})`;
+$('heat').innerHTML='<tr><th>Modelo evaluado ↓ / Juez →</th>'+J.map(j=>`<th>${j}</th>`).join('')+'</tr>'+M.map(([m,r])=>`<tr><td>${m}</td>${r.map(v=>`<td style="background:${col(v)}">${v.toFixed(2).replace('.',',')}</td>`).join('')}</tr>`).join('')+'<tr><td><b>Total</b></td>'+TOT.map(v=>`<td><b>${v.toFixed(2).replace('.',',')}</b></td>`).join('')+'</tr>';
+</script>
+</body>
+</html>

@@ -51,6 +51,7 @@ ul{padding-left:1.2em}
 li{margin:.3em 0}
 .callout{border:1px solid var(--acc);border-radius:12px;padding:12px 14px;background:rgba(180,83,42,.07)}
 footer{margin-top:40px;font:.8rem system-ui;color:var(--mut)}
+.site-footer{border-top:1px solid var(--line);background:var(--card);padding:22px 16px calc(22px + env(safe-area-inset-bottom,0px));font-family:system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center}.site-footer .links{display:flex;justify-content:center;align-items:center;gap:8px 22px;flex-wrap:wrap;max-width:860px;margin:0 auto}.site-footer a{display:inline-block;padding:10px 6px;min-height:44px;line-height:24px;font-weight:600;color:var(--acc);text-decoration:none;word-break:break-all}.site-footer a:hover{text-decoration:underline}.site-footer .copy{margin:6px 0 0;font-size:.8rem;color:var(--mut)}@media (max-width:480px){.site-footer .links{flex-direction:column;gap:0}.site-footer a{font-size:1rem}}
 </style>
 </head>
 <body>
@@ -155,6 +156,10 @@ footer{margin-top:40px;font:.8rem system-ui;color:var(--mut)}
 </ul>
 <footer>Resumen educativo elaborado a partir de Artificial Analysis (8-oct-2026). Para el detalle completo y la metodología, consulte el artículo original. No constituye asesoría legal.</footer>
 </main>
+<footer class="site-footer">
+<div class="links"><a href="https://www.dataflowia.com" target="_blank" rel="noopener">www.dataflowia.com</a><a href="mailto:contacto@dataflowia.com">contacto@dataflowia.com</a></div>
+<p class="copy">&copy; 2026 Todos los derechos reservados</p>
+</footer>
 <script>
 const $=id=>document.getElementById(id);
 const bar=(label,val,max,txt,extra='')=>`<div class="row"><span>${label}</span><div class="track">${extra}<div class="fill top" style="width:${Math.max(val/max*100,2)}%">${txt}</div></div></div>`;
